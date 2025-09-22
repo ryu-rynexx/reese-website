@@ -1,0 +1,94 @@
+
+/* ---- Left index layout for practice pages ---- */
+.page-with-left-index { display:grid; grid-template-columns: 260px 1fr; gap:32px; }
+.left-index { position:sticky; top:24px; align-self:start; border-left: 3px solid #e9edf3; padding-left:16px; }
+.left-index a { display:block; padding:6px 0; text-decoration:none; }
+.left-index a.active { font-weight:700; }
+@media (max-width: 960px) {
+  .page-with-left-index { grid-template-columns: 1fr; }
+  .left-index { position:static; border-left:none; padding-left:0; display:flex; gap:12px; flex-wrap:wrap; }
+}
+
+
+/* Locations page */
+.locations .page-header { margin: 24px 0 12px; }
+.office-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px; margin: 16px 0 48px; }
+.office-card { background:#fff; border:1px solid #e6eaf0; border-radius:16px; overflow:hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
+.office-card .office-hero img { width:100%; height:220px; object-fit:cover; display:block; }
+.office-card .office-body { padding:16px; }
+.office-card h2 { margin:0 0 6px; font-size:1.25rem; }
+.office-card .address, .office-card .phone { margin:4px 0; color:#4c5566; }
+.office-card .btn { display:inline-block; margin-top:10px; padding:10px 14px; border-radius:999px; border:1px solid #d3dbe6; text-decoration:none; }
+@media (prefers-color-scheme: dark) {
+  .office-card { background:#0f131a; border-color:#1e2735; box-shadow:none; }
+  .office-card .address, .office-card .phone { color:#aeb9cc; }
+  .office-card .btn { border-color:#2a3140; }
+}
+
+
+/* --- Locations (theme + SHB-inspired) --- */
+.locations-section .grid-2 { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; }
+.location-card { border-radius:16px; overflow:hidden; }
+.location-card .card-body { padding:16px; }
+.location-card .cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+.locations-quicklist { display:flex; gap:16px; margin: 24px 0; flex-wrap:wrap; }
+.locations-quicklist a { padding:8px 12px; border-radius:999px; border:1px solid var(--line, #e6eaf0); text-decoration:none; }
+.map-embed { margin:16px 0; padding:24px; border-radius:16px; border:1px solid var(--line, #e6eaf0); }
+.map-placeholder { height:220px; display:grid; place-items:center; color:#667085; background:rgba(0,0,0,0.02); border-radius:12px; }
+@media (prefers-color-scheme: dark) {
+  .locations-quicklist a { border-color:#2a3140; }
+  .map-embed { border-color:#2a3140; }
+  .map-placeholder { background:#0f131a; color:#aeb9cc; }
+}
+
+
+/* === Knockout global font (drop licensed files into assets/fonts/) === */
+@font-face{font-family:"Knockout";src:url("../fonts/Knockout-HTF49-Liteweight.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Knockout";src:url("../fonts/Knockout-HTF70-FullLitewt.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap;}
+:root{--font-body:"Knockout","Impact","League Gothic","Arial Narrow",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;}
+html,body{font-family:var(--font-body);}
+
+/* Statement band bigger + Ken Burns */
+.statement-band{position:relative;overflow:hidden;}
+.statement-band .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05);animation:kenburns-panzoom 24s ease-in-out infinite alternate;will-change:transform;}
+.statement-band .scrim{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.25));}
+.statement-band .inner{position:relative;z-index:2;display:grid;place-items:center;text-align:center;min-height:55vh;padding:56px 0;}
+.statement-band .inner h3{margin:0 0 8px;line-height:1.05;letter-spacing:.2px;font-weight:800;font-size:clamp(40px,8.5vw,100px);color:#fff;}
+.statement-band .inner p{margin:0;font-size:clamp(18px,3vw,38px);color:#e7edf6;}
+@keyframes kenburns-panzoom{0%{transform:scale(1.05) translate3d(-1.5%,-1.5%,0)}100%{transform:scale(1.2) translate3d(1.5%,1.5%,0)}}
+
+/* Ensure black header/footer have white text */
+.site-header,header.site-header{background:#000;color:#fff;}
+.site-header a,.site-header nav a{color:#fff;}
+.site-footer{background:#000;color:#fff;}
+.site-footer a{color:#fff;}
+
+
+/* === Readability override: light sections use dark text, dark sections use white === */
+.section:not(.bg-dark):not(.dark):not(.black),
+.section:not(.bg-dark):not(.dark):not(.black) *,
+.content:not(.bg-dark):not(.dark):not(.black),
+.content:not(.bg-dark):not(.dark):not(.black) * {
+  color: #101828 !important;
+}
+.section:not(.bg-dark):not(.dark):not(.black) a,
+.content:not(.bg-dark):not(.dark):not(.black) a {
+  color: #0f172a !important;
+  text-decoration: underline;
+}
+.section.bg-dark, .bg-dark, .dark, .black,
+.section.bg-dark *, .bg-dark *, .dark *, .black * {
+  color: #fff !important;
+}
+
+
+/* === Enforce white text on dark sections === */
+.section.bg-dark, .bg-dark, .dark, .black, .parallax, .statement-band { color:#fff !important; }
+.section.bg-dark *, .bg-dark *, .dark *, .black *, .parallax *, .statement-band * { color:#fff !important; }
+.section.bg-dark a, .bg-dark a, .dark a, .black a, .parallax a, .statement-band a { color:#fff !important; text-decoration: underline; }
+
+
+/* === Ensure light sections (NOT dark) use dark text === */
+.section:not(.bg-dark):not(.dark):not(.black), .content:not(.bg-dark):not(.dark):not(.black) { color:#101828 !important; }
+.section:not(.bg-dark):not(.dark):not(.black) a, .content:not(.bg-dark):not(.dark):not(.black) a { color:#101828 !important; text-decoration: underline; }
+
